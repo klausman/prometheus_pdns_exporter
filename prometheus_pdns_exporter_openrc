@@ -1,0 +1,14 @@
+#!/sbin/openrc-run
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+description="Prometheus PowerDNS stats exporter"
+
+pidfile="/run/${SVCNAME}.pid"
+command=/usr/bin/prometheus_pdns_exporter.py
+command_args="${PDNS_EXPORTER_ARGS}"
+command_background="true"
+
+start_stop_daemon_args="-u ${PROMETHEUS_USER} -1 ${PDNS_EXPORTER_LOG_FILE} -2 ${PDNS_EXPORTER_LOG_FILE}"
+
